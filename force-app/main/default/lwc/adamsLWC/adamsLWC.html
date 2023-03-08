@@ -11,9 +11,9 @@
                         </header>
                         <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                             <div class="slds-form slds-form_vertical">
-                                <lightning-input label="Task Description" name="taskDescription" value={taskDescription} onchange={handleInputChange}></lightning-input>
-                                <lightning-input type="date" label="Task Deadline" name="taskDeadline" value={taskDeadline} onchange={handleInputChange}></lightning-input>
-                                <lightning-combobox label="Category" name="category" value={category} options={categoryOptions} onchange={handleInputChange}></lightning-combobox>
+                                <lightning-input label="Task Description" name="taskDescription" class="taskDescription" value={taskDescription} onchange={handleInputChange}></lightning-input>
+                                <lightning-input type="date" label="Task Deadline" name="taskDeadline" class="taskDeadline" value={taskDeadline} onchange={handleInputChange}></lightning-input>
+                                <lightning-combobox label="Category" name="category" class="category" value={category} options={categoryOptions} onchange={handleInputChange}></lightning-combobox>
                             </div>
                         </div>
                         <footer class="slds-modal__footer">
@@ -26,5 +26,6 @@
             </template>
         </div>
     </lightning-card>
+    <c-tasks-cards></c-tasks-cards>
 </template>
 

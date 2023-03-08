@@ -1,10 +1,12 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 
 export default class AdamsLWC extends LightningElement {
     @track isModalOpen = false;
     @track taskDescription;
     @track taskDeadline;
     @track category;
+    @track newTask;
+
     categoryOptions = [
         { label: 'Personal', value: 'Personal' },
         { label: 'Work', value: 'Work' },
@@ -28,6 +30,20 @@ export default class AdamsLWC extends LightningElement {
 
     handleSave() {
         // handle saving logic here
+        console.log('Parent Compoent');
+        //console.log('Task Description: '+this.taskDescription);
+        //console.log('Task Deadline:'+this.taskDeadline);
+        //console.log('Task Category:'+this.category);
+        this.newTask ={
+            taskDescription:this.taskDescription,
+            taskDeadline:this.taskDeadline,
+            category:this.category
+        }
+        this.template.querySelector('c-tasks-cards').getNewTaskDetails(this.newTask);
+        this.newTask = '';
+        this.taskDescription = this.template.querySelector('.taskDescription').value = '';
+        this.taskDeadline = this.template.querySelector('.taskDeadline').value = '';
+        this.category = this.template.querySelector('.category').value='';
         this.closeModal();
     }
 }
