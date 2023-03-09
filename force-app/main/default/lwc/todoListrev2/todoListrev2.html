@@ -1,0 +1,75 @@
+<template>
+  <lightning-card title="To-do list">
+    <div class="slds-m-around_medium">
+      <lightning-button
+        variant="brand"
+        label="Create an item"
+        title="Create an item"
+        onclick={openModal}
+      ></lightning-button>
+      <template if:true={isModalOpen}>
+        <section
+          role="dialog"
+          tabindex="-1"
+          aria-labelledby="modal-heading-01"
+          aria-modal="true"
+          aria-describedby="modal-content-id-1"
+          class="slds-modal slds-fade-in-open"
+        >
+          <div class="slds-modal__container">
+            <header class="slds-modal__header">
+              <h2
+                id="modal-heading-01"
+                class="slds-modal__title slds-hyphenate"
+              >
+                Add Item to List
+              </h2>
+            </header>
+            <div
+              class="slds-modal__content slds-p-around_medium"
+              id="modal-content-id-1"
+            >
+              <div class="slds-form slds-form_vertical">
+                <lightning-input
+                  label="Task Description"
+                  name="taskDescription"
+                  value={taskDescription}
+                  onchange={handleInputChange}
+                ></lightning-input>
+                <lightning-input
+                  type="date"
+                  label="Task Deadline"
+                  name="taskDeadline"
+                  value={taskDeadline}
+                  onchange={handleInputChange}
+                ></lightning-input>
+                <lightning-combobox
+                  label="Category"
+                  name="category"
+                  value={category}
+                  options={categoryOptions}
+                  onchange={handleInputChange}
+                ></lightning-combobox>
+              </div>
+            </div>
+            <footer class="slds-modal__footer">
+              <button
+                class="slds-button slds-button_neutral"
+                onclick={closeModal}
+              >
+                Cancel
+              </button>
+              <button
+                class="slds-button slds-button_brand"
+                onclick={handleSave}
+              >
+                Save
+              </button>
+            </footer>
+          </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+      </template>
+    </div>
+  </lightning-card>
+</template>
