@@ -1,0 +1,42 @@
+<template>
+    <div class="app">
+      <div class="box box-center" onclick={createTaskHandler}>
+        <!--<div class="dotted-circle"> -->
+        <div>
+          <lightning-icon icon-name='utility:add' alternative-text='add' size='medium' title='add' class="slds-m-around_large"></lightning-icon>
+          <lightning-icon icon-name='utility:record_update' alternative-text='update' size='medium' title='record_update' class="slds-m-around_large"></lightning-icon>
+          <lightning-icon icon-name='standard:read_receipts' alternative-text='read' size='medium' title='read_receipts' class="slds-m-around_large" ></lightning-icon>
+          <lightning-icon icon-name='utility:delete' alternative-text='delete' size='medium' title='delete' class="slds-m-around_large"></lightning-icon>
+        </div>
+        <h2>Add New Task</h2>
+      </div>
+
+
+    </div>
+<!--<template if:true={showModal}>
+  <c-modal>
+    <h1 slot="header" class="slds-modal__title">Add Task</h1>
+    <form>
+      <lightning-input type="text" label="Title" name="Name"
+      value={taskRecord.Name}
+      class="slds-m-bottom_medium" onchange={changeHandler}></lightning-input>
+
+      <lightning-input-text
+        value={taskRecord.description}
+        name="description"
+        label="Description"
+        label-visible
+       
+        onchange={changeHandler}>
+    </lightning-input-text>
+
+    </form>
+
+    <footer slot="footer">
+      <button class="slds-button slds-button_neutral" onclick={closeModalHandler}>Cancel</button>
+      <button class="slds-button slds-button_brand" onclick={formSubmitHandler} disabled={isFormInvalid}>Save</button>
+    </footer>
+  </c-modal>
+</template>-->
+   
+</template>
