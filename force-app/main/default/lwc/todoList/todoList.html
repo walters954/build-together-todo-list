@@ -1,7 +1,11 @@
 <template>
     <lightning-card title="Todo List">
-        <lightning-button label="Add" slot="actions"></lightning-button>
-        <p class="slds-p-horizontal_small">List Item</p>
+        <lightning-button label="Add" slot="actions" onclick={handleClick}></lightning-button>
+        <template for:each={tasks} for:item="task">
+            <li key={task} class="slds-p-around_medium">
+                List Item: {task}
+            </li>
+        </template>
         <p slot="footer">Total Number of Open Tasks: 0</p>
     </lightning-card>
 </template>
