@@ -2,12 +2,17 @@
     <lightning-card>
         <h3 slot="title">
             <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
-            Team Stacker
+            Todo List
         </h3>
+
+        <lightning-input-field field-name="Item"></lightning-input-field>
+        <lightning-button label="Add" onclick={handleAddItem}></lightning-button>
+        <lightning-button label="Delete" onclick={handleDeleteItem}></lightning-button>
         <div slot="footer">
-                <lightning-badge label="Tag1"></lightning-badge>
-                <lightning-badge label="Tag2"></lightning-badge>
-                <lightning-badge label="Tag3"></lightning-badge>
+                <lightning-badge label="Total Items"></lightning-badge>
+                <lightning-badge label="Low Priority"></lightning-badge>
+                <lightning-badge label="Med Priority"></lightning-badge>
+                <lightning-badge label="High Priority"></lightning-badge>
         </div>
         <p class="slds-p-horizontal_small">Card Body (custom component)</p>
     </lightning-card>
