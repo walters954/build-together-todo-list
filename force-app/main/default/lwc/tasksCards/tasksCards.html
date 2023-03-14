@@ -1,14 +1,29 @@
 <template>
     <div class="slds-grid slds-wrap">
-    <template for:each={tasks} for:item="task">
-
-        <div key={task.Id} class="slds-col slds-size_1-of-2">
-            <lightning-card  title={task.taskDescription}>
-                <p class="slds-p-horizontal_small">{task.category}</p>
-                <p class="slds-p-horizontal_small">{task.deadLine}</p>
-                <!--lightning-icon icon-name="action:delete" alternative-text="Delete" title="Delete"></lightning-icon-->
-            </lightning-card>
-        </div>
-    </template>
-</div>
+        <template for:each={tasks} for:item="task">
+            <div key={task.id} class="slds-col slds-size_1-of-2 slds-p-around_small">
+                <lightning-card title={task.taskDescription}>
+                    <lightning-button-icon
+                        slot="actions"
+                        icon-name="utility:delete"
+                        alternative-text="Delete"
+                        title="Delete"
+                        onclick={handleDeleteTask}
+                        data-task-id={task.id}
+                    ></lightning-button-icon>
+                    <div class="slds-card__body slds-card__body_inner slds-grid slds-grid_align-spread">
+                        <div>
+                            <p class="slds-m-bottom_xx-small">{task.category}</p>
+                            <p>{task.deadLine}</p>
+                        </div>
+                    </div>
+                </lightning-card>
+            </div>
+        </template>
+    </div>
 </template>
+
+
+
+
+
