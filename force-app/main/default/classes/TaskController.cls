@@ -4,13 +4,15 @@ public with sharing class TaskController {
     String subject,
     String status,
     String priority,
-    Date activityDate
+    Date activityDate,
+    String type
   ) {
     Task newTask = new Task();
     newTask.Subject = subject;
     newTask.Status = status;
     newTask.Priority = priority;
     newTask.ActivityDate = activityDate;
+    newTask.Type = type;
     insert newTask;
   }
 }

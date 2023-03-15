@@ -13,7 +13,7 @@
                             <div class="slds-form slds-form_vertical">
                                 <lightning-input label="Task Description" name="taskDescription" class="taskDescription" value={taskDescription} onchange={handleInputChange}></lightning-input>
                                 <lightning-input type="date" label="Task Deadline" name="taskDeadline" class="taskDeadline" value={taskDeadline} onchange={handleInputChange}></lightning-input>
-                                <lightning-combobox label="Category" name="category" class="category" value={category} options={categoryOptions} onchange={handleInputChange}></lightning-combobox>
+                                <lightning-combobox label="Type" name="type" class="type" value={type} options={typeOptions} onchange={handleInputChange}></lightning-combobox>
                             </div>
                         </div>
                         <footer class="slds-modal__footer">

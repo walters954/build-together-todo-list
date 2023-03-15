@@ -1,13 +1,17 @@
 import { LightningElement, track, api } from 'lwc';
+import { createRecord } from "lightning/uiRecordApi";
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
+import createTaskRecord from "@salesforce/apex/TaskController.createTaskRecord";
+
 
 export default class AdamsLWC extends LightningElement {
     @track isModalOpen = false;
     @track taskDescription;
     @track taskDeadline;
-    @track category;
+    @track type;
     @track newTask;
 
-    categoryOptions = [
+    typeOptions = [
         { label: 'Personal', value: 'Personal' },
         { label: 'Work', value: 'Work' },
         { label: 'Hobbies', value: 'Hobbies' },
@@ -29,21 +33,45 @@ export default class AdamsLWC extends LightningElement {
     }
 
     handleSave() {
+        const subject = this.taskDescription;
+        const status = "Not Started";
+        const priority = "Normal";
+        const activityDate = this.taskDeadline;
+        const type = this.type;
+
+        createTaskRecord({ subject, status, priority, activityDate, type })
+        .then(() => {
+            this.closeModal();
+            const toastEvent = new ShowToastEvent({
+            title: "Success",
+            message: "Task created successfully",
+            variant: "success"
+            });
+            this.dispatchEvent(toastEvent);
+            this.dispatchEvent(new CustomEvent("taskcreated"));
+        })
+        .catch((error) => {
+            const toastEvent = new ShowToastEvent({
+            title: "Error",
+            message: "Error creating task: " + error.body.message,
+            variant: "error"
+            });
+            this.dispatchEvent(toastEvent);
+        });
+        
+        
         // handle saving logic here
         console.log('Parent Compoent');
-        //console.log('Task Description: '+this.taskDescription);
-        //console.log('Task Deadline:'+this.taskDeadline);
-        //console.log('Task Category:'+this.category);
         this.newTask ={
             taskDescription:this.taskDescription,
             taskDeadline:this.taskDeadline,
-            category:this.category
+            type:this.type
         }
         this.template.querySelector('c-tasks-cards').getNewTaskDetails(this.newTask);
         this.newTask = '';
         this.taskDescription = this.template.querySelector('.taskDescription').value = '';
         this.taskDeadline = this.template.querySelector('.taskDeadline').value = '';
-        this.category = this.template.querySelector('.category').value='';
+        this.type = this.template.querySelector('.type').value='';
         this.closeModal();
     }
 }
