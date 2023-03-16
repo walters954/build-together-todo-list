@@ -8,7 +8,7 @@ export default class TasksCards extends LightningElement {
         this.newTaskDetails = {
             id: new Date().getTime().toString(),
             taskDescription: newTask.taskDescription,
-            category: newTask.category,
+            type: newTask.type,
             deadLine: newTask.taskDeadline,
         };
         this.tasks.push(this.newTaskDetails);
