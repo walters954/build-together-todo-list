@@ -7,7 +7,8 @@
         "@lwc/lwc/no-unexpected-wire-adapter-usages": "off"
       },
       "env": {
-        "node": true
+        "node": true,
+        "browser": true
       }
     }
   ]

@@ -5,37 +5,47 @@
     --light-blue:#0076d3;
     --light-gray: #cecece;
     --light-red:#e91515;
+    --size-12:12px;
+    --size-14:14px;
+    --size-16:16px;
+    --size-18:18px;
+    --size-20:20px;
+    
+
+
   }
   .app{
-    background: var(--dark-blue);
-      min-height: 100vh;
-      font-size: 16px;
+      background: var(--dark-blue);
       padding: 16px;
+      width: 100%;
+      min-height: 100vh;
+      font-size: var(--size-16) ;
       display: flex;
       flex-wrap: wrap;
   }
-  
   .box{
-    height: 350px;
-    width: 350px;
+    height: 300px;
+    width: 300px;
     background: var(--white);
-    border-radius: 12px;
-    margin: 12px;
+    border-radius: var(--size-12);
+    margin: 12px;  
   }
   .box-center{
-    /*flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content:center ;
+    align-items: center;    
+    background: var(--white);
+    border-radius: 12px;
     cursor: pointer;
-    */
   }
   .dotted-circle{
-    border: 2px solid var(--dark-blue);;
+    border: 2px solid var(--dark-blue);
     border-radius: 50%;
     padding: 16px;
   }
   h2{
-    font-size: 20px;
+    font-size: var(--size-20);
     font-weight: 700;
   }
   .custom-icon{
@@ -56,11 +66,11 @@
   }
   .tasks{
     height: 221px;
-    overflow: auto;
+    overflow: auto;/*for autocroling bar*/
     padding: 4px 16px;
   }
   .footer{
-    display: flex;
+      display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 4px 16px;
@@ -69,7 +79,7 @@
       border-bottom-right-radius: 12px;
   }
   .date{
-    color: var(--dark-gray);
+      color: var(--dark-gray);
       font-size: 14px;
       font-style: italic;
   }
