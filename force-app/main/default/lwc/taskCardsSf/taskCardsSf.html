@@ -1,0 +1,14 @@
+<template>
+    <h4>Tasks List</h4>
+    <template lwc:if={tasks.data}>
+        <template for:each={tasks.data} for:item="task">
+            <lightning-card key={task.Id}>
+                <p class="slds-m-around_x-small"><b>Subject:</b> {task.Subject}</p>
+                <p class="slds-m-around_x-small"><b>Description:</b> {task.Description}</p>
+                <p class="slds-m-around_x-small"><b>Status:</b> {task.Status}</p>
+                <p class="slds-m-around_x-small"><b>Priority:</b> {task.Priority}</p>
+                <p class="slds-m-around_x-small"><b>Activity Date:</b> {task.ActivityDate}</p>
+            </lightning-card>
+        </template>
+    </template>
+</template>
