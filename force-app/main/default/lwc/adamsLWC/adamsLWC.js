@@ -38,7 +38,7 @@ export default class AdamsLWC extends LightningElement {
         const priority = "Normal";
         const activityDate = this.taskDeadline;
         const type = this.type;
-
+    
         createTaskRecord({ subject, status, priority, activityDate, type })
         .then(() => {
             this.closeModal();
@@ -48,7 +48,7 @@ export default class AdamsLWC extends LightningElement {
             variant: "success"
             });
             this.dispatchEvent(toastEvent);
-            this.dispatchEvent(new CustomEvent("taskcreated"));
+            this.refreshTasks();
         })
         .catch((error) => {
             const toastEvent = new ShowToastEvent({
@@ -58,20 +58,16 @@ export default class AdamsLWC extends LightningElement {
             });
             this.dispatchEvent(toastEvent);
         });
-        
-        
-        // handle saving logic here
-        console.log('Parent Compoent');
-        this.newTask ={
-            taskDescription:this.taskDescription,
-            taskDeadline:this.taskDeadline,
-            type:this.type
-        }
-        this.template.querySelector('c-tasks-cards').getNewTaskDetails(this.newTask);
-        this.newTask = '';
+    
+        // Clear input fields
         this.taskDescription = this.template.querySelector('.taskDescription').value = '';
         this.taskDeadline = this.template.querySelector('.taskDeadline').value = '';
         this.type = this.template.querySelector('.type').value='';
         this.closeModal();
     }
+    
+    refreshTasks() {
+        this.template.querySelector("c-tasks-cards").refreshTasks();
+    }
+    
 }

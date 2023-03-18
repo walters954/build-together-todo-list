@@ -20,4 +20,10 @@ public with sharing class TaskController {
   public static List<Task> getTaskRecords(){
     return [SELECT Id, subject, status, priority, activityDate FROM Task];
   }
+
+  @AuraEnabled
+  public static void deleteTaskRecord(String taskId) {
+      Task taskToDelete = [SELECT Id FROM Task WHERE Id = :taskId LIMIT 1];
+      delete taskToDelete;
+  }
 }

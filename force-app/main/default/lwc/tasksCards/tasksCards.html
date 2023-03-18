@@ -1,24 +1,27 @@
 <template>
     <div class="slds-grid slds-wrap">
-        <template for:each={tasks} for:item="task">
-            <div key={task.id} class="slds-col slds-size_1-of-2 slds-p-around_small">
-                <lightning-card title={task.taskDescription}>
-                    <lightning-button-icon
-                        slot="actions"
-                        icon-name="utility:delete"
-                        alternative-text="Delete"
-                        title="Delete"
-                        onclick={handleDeleteTask}
-                        data-task-id={task.id}
-                    ></lightning-button-icon>
-                    <div class="slds-card__body slds-card__body_inner slds-grid slds-grid_align-spread">
-                        <div>
-                            <p class="slds-m-bottom_xx-small">{task.type}</p>
-                            <p>{task.deadLine}</p>
+        <template if:true={tasks.data}>
+            <template for:each={tasks.data} for:item="task">
+                <div key={task.Id} class="slds-col slds-size_1-of-2 slds-p-around_small">
+                    <lightning-card title={task.Subject}>
+                        <lightning-button-icon
+                            slot="actions"
+                            icon-name="utility:delete"
+                            alternative-text="Delete"
+                            title="Delete"
+                            onclick={handleDeleteTask}
+                            data-task-id={task.Id}
+                        ></lightning-button-icon>
+                        <div class="slds-card__body slds-card__body_inner slds-grid slds-grid_align-spread">
+                            <div>
+                                <p class="slds-m-around_x-small"><b>Status:</b> {task.Status}</p>
+                                <p class="slds-m-around_x-small"><b>Priority:</b> {task.Priority}</p>
+                                <p class="slds-m-around_x-small"><b>Activity Date:</b> {task.ActivityDate}</p>
+                            </div>
                         </div>
-                    </div>
-                </lightning-card>
-            </div>
+                    </lightning-card>
+                </div>
+            </template>
         </template>
     </div>
 </template>
