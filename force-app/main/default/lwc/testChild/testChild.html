@@ -1,13 +1,8 @@
 <template>
-    
-    <p>First Name: <slot name="firstName">Default first name</slot></p>
-    <p>Last Name: <slot name="lastName">Default last name</slot></p>
-    <p>Description: <slot>Default description</slot></p>
-    <lightning-button 
-        variant="brand" 
-        label="Brand" 
-        title="Looks like a link" 
-        onclick={handleClick} 
-        class="slds-m-left_x-small"
-    ></lightning-button>
+    <lightning-modal-header label="My Modal Heading"></lightning-modal-header>
+    <lightning-modal-body> Content: {content} </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button label="OK" onclick={handleOkay}></lightning-button>
+        <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+    </lightning-modal-footer>
 </template>

@@ -1,11 +1,13 @@
-import { LightningElement } from 'lwc';
+import { api } from 'lwc';
+import LightningModal from 'lightning/modal';
 
-export default class TestChild extends LightningElement {
-
-    childProperty = 'test123';
-
-    handleClick(){
-        const event = new CustomEvent('childupdate' , { bubbles: true });
-        this.dispatchEvent(event);
+export default class TestChild extends LightningModal {
+    @api content;
+    @api headerText;
+    handleOkay() {
+        this.close('okay');
+    }
+    handleNotOkay() {
+        this.close('Not Okay');
     }
 }

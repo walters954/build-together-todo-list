@@ -1,10 +1,15 @@
 import { LightningElement, track } from 'lwc';
+import TestChild from 'c/testChild';
 
-export default class TodoList extends LightningElement {
+export default class TodoList extends LightningElement  {
+    showModal
 
     tasks = [0,1,2,3,4,5,6];
     
     handleClick(event) {
+        TestChild.open().then((result) => {
+            console.log(result);
+        });
         console.log(event.target.label);
         let newItem = Math.floor(Math.random() * 100);
         
@@ -22,5 +27,8 @@ export default class TodoList extends LightningElement {
 
         this.tasks = newTasks;
         console.log(this.tasks);
+    }
+    handleCancel(){
+        this.showModal=false;
     }
 }
