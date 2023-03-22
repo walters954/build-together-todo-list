@@ -1,0 +1,20 @@
+<template>
+    <lightning-modal-header label="New Task"></lightning-modal-header>
+    <lightning-modal-body>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" label="Subject" name="subject" value={subject} onchange={handleInputChange} required></lightning-input>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-combobox name="status" label="Status" value={status} options={statusOptions} onchange={handleInputChange} ></lightning-combobox>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-combobox name="priority" label="Priority" value={priority} options={priorityOptions} onchange={handleInputChange} ></lightning-combobox>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="date" label="Due Date" name="dueDate" value={dueDate} onchange={handleInputChange} required></lightning-input>
+        </div>
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button label="Create" onclick={handleCreate}></lightning-button>
+    </lightning-modal-footer>
+</template>

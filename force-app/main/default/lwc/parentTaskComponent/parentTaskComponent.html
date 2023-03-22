@@ -1,0 +1,11 @@
+<template>
+    <div class="slds-box slds-theme_shade">
+        <lightning-button variant="brand" label="New Task" title="Primary action" onclick={openModal} class="slds-m-left_x-small"></lightning-button>
+        <template if:true={taskList}>
+            <template for:each={taskList} for:item="task">
+                <c-child-Task-Cards key={task.Id}  task={task} onupdatetaskcards={updateTaskCardsOnDelete}>
+                </c-child-Task-Cards>
+            </template>
+        </template>
+    </div>
+</template>

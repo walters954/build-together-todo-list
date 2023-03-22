@@ -1,0 +1,11 @@
+<template>
+        <lightning-card title = {task.Subject}>
+            <lightning-button-icon icon-name="utility:edit" alternative-text="edit" data-task-id = {task.Id} title="edit" onclick={editTask}></lightning-button-icon>
+            <lightning-button-icon icon-name="utility:delete" alternative-text="Delete" data-task-id = {task.Id} title="Delete" onclick={deleteTask}></lightning-button-icon>
+            <div>
+                <p class="slds-m-around_x-small"><b>Status:</b> {task.Status}</p>
+                <p class="slds-m-around_x-small"><b>Priority:</b> {task.Priority}</p>
+                <p class="slds-m-around_x-small"><b>Activity Date:</b> {task.ActivityDate}</p>
+            </div>
+        </lightning-card>  
+</template>
