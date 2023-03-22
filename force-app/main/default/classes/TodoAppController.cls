@@ -55,5 +55,13 @@ public with sharing class TodoAppController {
         return editTask;
     }
 
-
+    @AuraEnabled
+    public static void updateTask(String taskId, String subject, String status, String priority){
+        Task updateTask = new Task();
+        updateTask.Id = Id.valueOf(taskId);
+        updateTask.Subject = subject;
+        updateTask.Status = status;
+        updateTask.Priority = priority;
+        update updateTask;
+    }
 }

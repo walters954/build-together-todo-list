@@ -1,4 +1,25 @@
 <template>
+<template lwc:if={editEnabled}>
+    <lightning-card title = "Edit Task">
+        <div>
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-input type="text" label="Subject" name="subject" value={subject} onchange={handleInputChange} required></lightning-input>
+            </div>
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-combobox name="status" label="Status" value={status} options={statusOptions} onchange={handleInputChange} ></lightning-combobox>
+            </div>
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-combobox name="priority" label="Priority" value={priority} options={priorityOptions} onchange={handleInputChange} ></lightning-combobox>
+            </div>
+            <div class="slds-p-around_medium lgc-bg">
+                <lightning-input type="date" label="Due Date" name="dueDate" value={dueDate} onchange={handleInputChange} required></lightning-input>
+            </div>
+            <lightning-button variant="brand" label="Update" title="Primary action" data-task-id ={task.Id} onclick={updateTask} class="slds-m-left_x-small"></lightning-button>
+            <lightning-button variant="brand" label="Cancel" title="Primary action" data-task-id ={task.Id} onclick={cancelTask} class="slds-m-left_x-small"></lightning-button>        
+        </div>
+    </lightning-card>    
+</template>
+<template lwc:else>
         <lightning-card title = {task.Subject}>
             <lightning-button-icon icon-name="utility:edit" alternative-text="edit" data-task-id = {task.Id} title="edit" onclick={editTask}></lightning-button-icon>
             <lightning-button-icon icon-name="utility:delete" alternative-text="Delete" data-task-id = {task.Id} title="Delete" onclick={deleteTask}></lightning-button-icon>
@@ -7,5 +28,6 @@
                 <p class="slds-m-around_x-small"><b>Priority:</b> {task.Priority}</p>
                 <p class="slds-m-around_x-small"><b>Activity Date:</b> {task.ActivityDate}</p>
             </div>
-        </lightning-card>  
+        </lightning-card>
+</template>  
 </template>
