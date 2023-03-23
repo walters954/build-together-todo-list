@@ -1,41 +1,53 @@
 <template>
-   <div class="app">
+    <c-notification></c-notification>
+    <div class="app">
         <div class="box box-center" onclick={createTaskHandler}>
             <div class="dotted-circle">
                 <lightning-icon class="custom-icon" icon-name='utility:add' alternative-text='add' size='large' title='add'></lightning-icon>
             </div>
             <h2>Add new Task</h2>
         </div>
-        <div class="box slds-var-m-bottom_medium">
-            <header class="header">
-                <h2 class="slds-truncate">Task Record heading</h2>
-            </header>
-            <div class="tasks">
-                Tasks infos will come here
-            </div>
-            <footer class="footer" >
-                <div class="date">Task date</div>
-                <div>
-                    <lightning-icon  class="edit-icon" icon-name='action:edit' alternative-text='edit task' size='xx-small' title='edit'></lightning-icon>
-                    <lightning-icon class="delete-icon" icon-name='action:delete' alternative-text='delete task' size='xx-small' title='delete'></lightning-icon>
+        <template for:each={tasks} for:item="task" >
+            <div class="box slds-var-m-bottom_medium" key={task.Id}>
+                <header class="header">
+                    <h2 class="slds-truncate">Task Id : {task.Id} {task.Subject}: {task.Status}</h2>
+                </header>
+                <div class="tasks">
+                    </br>
+                    {task.Subject}
+                    </br>
+                    {task.Status}
+                    </br>
+                    {task.Description}
+                    </br>
+                    {task.Status}
                 </div>
                 
-            </footer>
-        </div>
+                <footer class="footer">
+                    <div class="date">{task.formatedDate}</div>
+                    <div>
+                        <lightning-icon  class="edit-icon" icon-name='action:edit' alternative-text='edit task' size='xx-small' title='edit' onclick={editTaskHandler} data-recordid={task.Id}></lightning-icon>
+                        <lightning-icon class="delete-icon" icon-name='action:delete' alternative-text='delete task' size='xx-small' title='delete' onclick={deleteTaskHandler} data-recordid={task.Id}></lightning-icon>
+                    </div>
+                    
+                </footer>
+            </div>
+        </template>
    </div>
    <template if:true={showModal}>
         <c-modal>
             <h1 slot="header" class="slds-modal__title">Add Task</h1>
             <form>
-                <lightning-input type="text" label="Description" name="description" class="slds-var-m-bottom_medium"></lightning-input>
-                <lightning-combobox name="staus" label="Task Status" value={statusSelectedValue} options={statusValuesList} onchange={handleChangeStatus}></lightning-combobox>
-                <lightning-input type="date" name="dueDate" label="Enter a date"></lightning-input>
-                <lightning-combobox name="priority" label="Task Priority" value={prioritySelectedValue} options={priorityValuesList} onchange={handleChangePriority}></lightning-combobox>
+                <lightning-input type="text" label="Subject" name="Subject" class="slds-var-m-bottom_medium"  onchange={changeHandler}></lightning-input>
+                <lightning-input type="text" label="Description" name="Description" class="slds-var-m-bottom_medium"  onchange={changeHandler}></lightning-input>
+                <lightning-combobox name="Status" label="Task Status" value={statusSelectedValue} options={statusValuesList} onchange={changeHandler}></lightning-combobox>
+                <!--<lightning-input type="date" name="dueDate" label="Enter a date"  onchange={changeHandler}></lightning-input>-->
+                <lightning-combobox name="Priority" label="Task Priority" value={prioritySelectedValue} options={priorityValuesList} onchange={changeHandler}></lightning-combobox>
 
             </form>
             <footer slot="footer">
                 <button class="slds-button slds-button_neutral" onclick={closeModalHandler}>Cancel</button>
-                <button class="slds-button slds-button_brand" onclick={saveTaskHandler}>Save</button>
+                <button class="slds-button slds-button_brand" onclick={formSubmitHandler}>Save</button>
             </footer>
         </c-modal>
     </template> 
