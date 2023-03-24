@@ -1,12 +1,16 @@
 <template>
     <lightning-card title="Todo List">
-        <lightning-button label="Add" slot="actions" onclick={handleClick}></lightning-button>
+        <div class="slds-p-around_medium" slot="actions">
+            <lightning-button label="Add"  onclick={handleClick}></lightning-button>
+            <lightning-button variant="destructive"  label="Delete" title="" onclick={deleteAll} class="slds-m-left_x-small"></lightning-button>
+        </div>
         <template for:each={tasks} for:item="task">
-            <li key={task} class="slds-p-around_medium">
+            <li key={task} class="slds-var-p-around_medium">
                 List Item: {task}
             </li>
         </template>
-        <p slot="footer">Total Number of Open Tasks: 0</p>
+        
+        <p slot="footer">Total Number of Open Tasks: {taskLength}</p>
     </lightning-card>
 </template>
 
