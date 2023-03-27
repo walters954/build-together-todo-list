@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Completed Tasks">
+        <div class="slds-m-around_medium">
+            <lightning-datatable
+                key-field="Id"
+                data={tasks}
+                columns={columns}
+                hide-checkbox-column
+            >
+            </lightning-datatable>
+        </div>
+    </lightning-card>
+</template>
+
