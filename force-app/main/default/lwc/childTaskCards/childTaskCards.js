@@ -1,11 +1,24 @@
-import { api,track,LightningElement } from 'lwc';
+/*******************************************************************************************
+ * Name         ChildTaskCards
+ * Author       Adam/Aiswarya
+ * Date         03/30/2023
+ * Group        Team Canada
+ * Description  The code provided defines a Lightning Web Component (LWC) called ChildTaskCards that displays individual tasks and allows users to delete, edit, and update tasks using Apex methods. The component also makes use of ShowToastEvent to provide success or error messages to users based on their interactions with the tasks.
+ *******************************************************************************************/
+/* MODIFICATION LOG
+ * Version          Developer          Date               Description
+ *-------------------------------------------------------------------------------------------
+ *  1.0              Adam/Aiswarya      03/30/2023          Initial Creation
+  *******************************************************************************************/
+// Import necessary LWC modules, Apex methods and ShowToastEvent
+ import { api,track,LightningElement } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import deleteTask from '@salesforce/apex/TodoAppController.deleteTask';
 import getTaskDetails from '@salesforce/apex/TodoAppController.getTaskDetails';
 import getStatusPicklistValues from '@salesforce/apex/TodoAppController.getStatusPicklistValues';
 import getPriorityPicklistValues from '@salesforce/apex/TodoAppController.getPriorityPicklistValues';
 import updateTask from '@salesforce/apex/TodoAppController.updateTask';
-
+// Define ChildTaskCards component class
 export default class ChildTaskCards extends LightningElement {
     @api task;
     @track subject;
@@ -15,7 +28,7 @@ export default class ChildTaskCards extends LightningElement {
     @track statusOptions;
     @track priorityOptions;
     @track editEnabled = false;
-
+// Method to delete a task
     deleteTask(event){
          const Id = event.target.dataset.taskId;
         console.log(Id);
@@ -42,7 +55,7 @@ export default class ChildTaskCards extends LightningElement {
             this.dispatchEvent(event);
         });
     }
-
+// Method to enable task editing
     editTask(event){
         this.editEnabled = true;
         const Id = event.target.dataset.taskId;
@@ -75,13 +88,13 @@ export default class ChildTaskCards extends LightningElement {
             this.status = result.Status;
         }).catch(error => {console.log(error);});
     }
-
+// Method to handle input changes for task editing
     handleInputChange(event){
         const field = event.target.name;
         const value = event.target.value;
         this[field]=value;
     }
-
+    // Method to update a task
     updateTask(event){
         const Id = event.target.dataset.taskId;
         updateTask({taskId:Id,subject:this.subject,status:this.status,priority:this.priority}).then(result => {
@@ -106,8 +119,12 @@ export default class ChildTaskCards extends LightningElement {
             this.dispatchEvent(event);
             console.log(error);})
     }
-
+// Method to cancel task editing and revert to the original state
     cancelTask(){
         this.editEnabled = false;
     }
 }
+
+
+
+
